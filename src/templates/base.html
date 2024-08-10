@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+    </head>
+
+    <body>
+        <h1>{{page_title}}
+            {{request.user}} {{request.method}} - {{request.user.is_authenticated   }} 
+        </h1>
+
+        {% block content %}
+        {{queryset}}
+        page visited is {{page_visits_count}}
+        {% endblock %}
+    </body>
+</html>
