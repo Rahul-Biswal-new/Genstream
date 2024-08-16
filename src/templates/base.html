@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-
+        {% include 'base/css.html'%}
     </head>
 
     <body>
@@ -13,5 +13,7 @@
         {{queryset}}
         page visited is {{page_visits_count}}
         {% endblock %}
+
+        {% include 'base/js.html' %}
     </body>
 </html>
