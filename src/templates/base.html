@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html>
     <head>
-        {% include 'base/css.html'%}
+        {% include 'base/css.html' %}
     </head>
 
     <body>
+        {% include 'nav/navbar.html' %}
         <h1>{{page_title}}
-            {{request.user}} {{request.method}} - {{request.user.is_authenticated   }} 
+            {{request.user}} {{request.method}} - {{request.user.is_authenticated }} 
         </h1>
 
         {% block content %}
