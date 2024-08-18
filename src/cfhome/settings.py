@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = config("DJANGO_SECRET_KEY")
-print("SECRET KEY",SECRET_KEY)
+# print("SECRET KEY",SECRET_KEY)
 
 # SECURITY WARNING: don't run with debug turned on in production!
 # DEBUG = str(os.environ.get("DJANGO_DEBUG")).lower() == "true"
@@ -101,24 +101,26 @@ CONN_MAX_AGE = config("CONN_MAX_AGE", default = 600, cast= int)
 DATABASE_URL = config("DATABASE_URL", default = None,  cast = str)
 
 
-# if DATABASE_URL is not None:
-#     import dj_database_url
-#     # print(f"Importing dj_database_url: {dj_database_url}")
-#     DATABASES = {
-#         "default": dj_database_url.config(
-#             default = DATABASE_URL,
-#             conn_max_age= CONN_MAX_AGE,
-#             conn_health_checks = True
-#         )
-#     }
-# else:
-#     print("DATABASE_URL is not set.")
-#     DATABASES = {
-#         "default": {
-#             "ENGINE": "django.db.backends.sqlite3",
-#             "NAME": os.path.join(BASE_DIR, "db.sqlite3"),
-#         }
-#     }
+if DATABASE_URL is not None:
+    import dj_database_url
+    # print(f"Importing dj_database_url: {dj_database_url}")
+    DATABASES = {
+        "default": dj_database_url.config(
+            default = DATABASE_URL,
+            conn_max_age= CONN_MAX_AGE,
+            conn_health_checks = True
+        )
+    }
+else:
+    # print("DATABASE_URL is not set.")
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.sqlite3",
+            "NAME": os.path.join(BASE_DIR, "db.sqlite3"),
+        }
+    }
+
+    
 
 
 # Password validation
