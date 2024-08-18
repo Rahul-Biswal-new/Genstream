@@ -8,6 +8,9 @@ RUN python -m venv /opt/venv
 # Set the virtual environment as the current location
 ENV PATH=/opt/venv/bin:$PATH
 
+# Set the Django secret key (replace with your actual key for production)
+ENV DJANGO_SECRET_KEY="your-secret-key-here"
+
 # Upgrade pip
 RUN pip install --upgrade pip
 
