@@ -101,9 +101,6 @@ CONN_MAX_AGE = config("CONN_MAX_AGE", default = 600, cast= int)
 DATABASE_URL = config("DATABASE_URL", default = None,  cast = str)
 
 
-
-
-# Replace the DATABASES section of your settings.py with this
 DATABASES = {
   'default': {
     'ENGINE': 'django.db.backends.postgresql',
@@ -177,6 +174,16 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
 STATIC_URL = 'static/'
+STATICFILES_BASE_DIR = BASE_DIR / "staticfiles"
+STATICFILES_VENDOR_DIR = STATICFILES_BASE_DIR / "vendors"
+
+# source for python manage.py 
+STATICFILES_DIRS = [
+    STATICFILES_BASE_DIR
+]
+
+
+STATIC_ROOT = BASE_DIR.parent / "local-cdn"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
