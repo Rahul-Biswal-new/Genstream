@@ -42,7 +42,7 @@ RUN pip install -r /tmp/requirements.txt
 RUN pip install gunicorn
 
 # Create a bash script to run the Django project
-ARG PROJ_NAME="cfehome"
+ARG PROJ_NAME="cfhome"
 RUN printf "#!/bin/bash\n" > ./paracord_runner.sh && \
     printf "RUN_PORT=\"\${PORT:-8000}\"\n\n" >> ./paracord_runner.sh && \
     printf "python manage.py migrate --no-input\n" >> ./paracord_runner.sh && \
