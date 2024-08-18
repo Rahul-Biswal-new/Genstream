@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 import os 
 from decouple import config 
 from pathlib import Path
-
+from os import getenv
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -99,8 +99,6 @@ WSGI_APPLICATION = 'cfhome.wsgi.application'
 
 CONN_MAX_AGE = config("CONN_MAX_AGE", default = 600, cast= int)
 DATABASE_URL = config("DATABASE_URL", default = None,  cast = str)
-
-
 
 
 DATABASES = {
