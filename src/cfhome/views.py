@@ -8,7 +8,7 @@ this_dir = pathlib.Path(__file__).resolve().parent
 def home_page_view(request, *args, **kwargs):
     # print(this_dir)
     queryset = PageVisits.objects.all()
-    print(queryset)
+    # print(queryset)
 
     my_context = {
         "page_title": "my_page",
