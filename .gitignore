@@ -2,6 +2,9 @@ venv
 .env
 
 
+# ignore staticfiles
+src/staticfiles/vendors
+
 # Python
 *.pyc
 *.pyo
