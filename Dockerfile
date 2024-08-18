@@ -42,7 +42,7 @@ COPY ./src /code
 
 # Install the Python project requirements
 RUN pip install -r /tmp/requirements.txt
-RUN pip install gunicorn 
+RUN pip install gunicorn
 
 # database isn't available during build
 # run any other commands that do not need the database
@@ -50,7 +50,7 @@ RUN pip install gunicorn
 # RUN python manage.py collectstatic --noinput
 
 # set the Django default project name
-ARG PROJ_NAME="cfhome"
+ARG PROJ_NAME="cfehome"
 
 # create a bash script to run the Django project
 # this script will execute at runtime when
