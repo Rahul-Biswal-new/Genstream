@@ -1,6 +1,10 @@
 venv
 .env
 
+# vendor static files
+src/staticfiles/vendors
+
+local-cdn/
 
 # ignore staticfiles
 src/staticfiles/vendors
