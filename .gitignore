@@ -1,0 +1,38 @@
+# Python-specific ignores
+*.pyc
+*.pyo
+*.pyd
+__pycache__/
+
+# Django-specific ignores
+*.log
+*.pot
+*.pyc
+*.pyo
+*.pyd
+__pycache__/
+db.sqlite3
+media/
+staticfiles/
+
+# Environment-specific files
+.env
+*.env
+
+# Virtual environment
+venv/
+env/
+.env/
+venv.bak/
+ENV/
+env.bak/
+
+# IDE/editor-specific files
+.vscode/
+.idea/
+*.sublime-workspace
+*.sublime-project
+
+# OS-specific files
+.DS_Store
+Thumbs.db
