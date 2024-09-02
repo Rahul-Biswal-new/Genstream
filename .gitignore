@@ -1,1 +1,58 @@
-venv/
+venv
+.env
+
+# vendor static files
+src/staticfiles/vendors
+
+local-cdn/
+
+# ignore staticfiles
+src/staticfiles/vendors
+
+# Python
+*.pyc
+*.pyo
+*.pyd
+__pycache__/
+
+# Django
+*.log
+local_settings.py
+db.sqlite3
+media/
+staticfiles/
+
+# Environment
+.env
+
+# IDEs and Editors
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# System
+.DS_Store
+Thumbs.db
+
+# Cache
+*.cache
+*.tmp
+*.log
+
+# Coverage
+.coverage
+coverage.xml
+*.cover
+nosetests.xml
+test_*.xml
+
+# MySQL
+*.sql
+
+# PostgreSQL
+*.psql
+*.pg
+
+# Jupyter Notebooks
+.ipynb_checkpoints/

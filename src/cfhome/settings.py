@@ -9,8 +9,10 @@ https://docs.djangoproject.com/en/5.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.0/ref/settings/
 """
-
+import os 
+from decouple import config 
 from pathlib import Path
+from os import getenv
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,17 +22,23 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-2o@n)j%$i$p(*#ex$-m0f)$-l+9^9*3x)ic1k!32m6(6(sftvv'
+SECRET_KEY = config("DJANGO_SECRET_KEY")
+# print("SECRET KEY",SECRET_KEY)
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# DEBUG = str(os.environ.get("DJANGO_DEBUG")).lower() == "true"
+DEBUG = config("DJANGO_DEBUG", cast= bool)
+
+print("DEBUG",DEBUG, type(DEBUG))
 
 ALLOWED_HOSTS = [".railway.app"]
 
 if DEBUG:
     ALLOWED_HOSTS += [
-        "127.0.0.1"
+        "127.0.0.1",
+        "localhost"
     ]
+
 
 
 # Application definition
@@ -81,12 +89,54 @@ WSGI_APPLICATION = 'cfhome.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#     }
+# }
+
+
+CONN_MAX_AGE = config("CONN_MAX_AGE", default = 600, cast= int)
+DATABASE_URL = config("DATABASE_URL", default = None,  cast = str)
+
+
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+  'default': {
+    'ENGINE': 'django.db.backends.postgresql',
+    'NAME': config('PGDATABASE'),
+    'USER': config('PGUSER'),
+    'PASSWORD': config('PGPASSWORD'),
+    'HOST': config('PGHOST'),
+    'PORT': config('PGPORT', 5432),
+    'OPTIONS': {
+      'sslmode': 'require',
+    },
+  }
 }
+
+
+
+# if DATABASE_URL is not None:
+#     import dj_database_url
+#     # print(f"Importing dj_database_url: {dj_database_url}")
+#     DATABASES = {
+#         "default": dj_database_url.config(
+#             default = DATABASE_URL,
+#             conn_max_age= CONN_MAX_AGE,
+#             conn_health_checks = True
+#         )
+#     }
+# else:
+#     # print("DATABASE_URL is not set.")
+#     DATABASES = {
+#         "default": {
+#             "ENGINE": "django.db.backends.sqlite3",
+#             "NAME": os.path.join(BASE_DIR, "db.sqlite3"),
+#         }
+#     }
+
+    
 
 
 # Password validation
@@ -124,6 +174,16 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
 STATIC_URL = 'static/'
+STATICFILES_BASE_DIR = BASE_DIR / "staticfiles"
+STATICFILES_VENDOR_DIR = STATICFILES_BASE_DIR / "vendors"
+
+# source for python manage.py 
+STATICFILES_DIRS = [
+    STATICFILES_BASE_DIR
+]
+
+
+STATIC_ROOT = BASE_DIR.parent / "local-cdn"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
