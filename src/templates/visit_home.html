@@ -1,0 +1,7 @@
+<h1>Visit Records</h1>
+    <ul>
+        {% for visit in visits %}
+            <li>{{ visit.timestamp }} - Path: {{ visit.path }}</li>
+        {% endfor %}
+    </ul>
+    <p><a href="{% url 'index' %}">Back to Home</a></p>
