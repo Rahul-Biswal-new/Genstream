@@ -2,7 +2,7 @@ django>= 5.0
 gunicorn
 
 WINDOWS
-    python -m venv venv
+    # python -m venv venv
     venv\Scripts\activate
 
     pip install django
