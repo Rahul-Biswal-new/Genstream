@@ -40,6 +40,7 @@ lib/
 Include/
 Scripts/
 
+venv
 # macOS
 .DS_Store
 
