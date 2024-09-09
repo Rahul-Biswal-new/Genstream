@@ -96,17 +96,32 @@ DATABASES = {
 }
 
 CONN_MAX_AGE = config("CONN_MAX_AGE", cast= str, default= 30)
-DATABASE_URL = config("DATABASE_URL", cast= str)
+DATABASE_URL = config("DATABASE_URL", cast= str, default=None)
 
-if DATABASE_URL is not None:
-    import dj_database_url
-    DATABASES = {
-    'default': dj_database_url.config(
-        default = DATABASE_URL,
-        conn_max_age= 30,
-        conn_health_checks = True
-        )
-}
+# if DATABASE_URL is not None:
+#     import dj_database_url
+#     DATABASES = {
+#     'default': dj_database_url.config(
+#         default = DATABASE_URL,
+#         conn_max_age= 30,
+#         conn_health_checks = True
+#         )
+# }
+
+if DATABASE_URL:
+    try:
+        DATABASES = {
+            'default': dj_database_url.config(
+                default=DATABASE_URL,
+                conn_max_age=CONN_MAX_AGE,  # Use the integer value for conn_max_age
+                conn_health_checks=True
+            )
+        }
+    except ValueError as e:
+        # Handle the case where DATABASE_URL is invalid
+        print(f"Invalid DATABASE_URL: {e}")
+        # Optionally, you can re-raise the exception or log it
+        raise
 
 
 # Password validation
