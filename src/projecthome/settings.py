@@ -97,7 +97,7 @@ DATABASES = {
 
 CONN_MAX_AGE = config("CONN_MAX_AGE", cast= str, default= 30)
 DATABASE_URL = config("DATABASE_URL", cast= str, default=None)
-DATABASE_URL = "postgresql://neondb_owner:Vuof26CEDpAi@ep-damp-sound-a56hgz7m.us-east-2.aws.neon.tech/neondb?sslmode=require"
+# print("DATABASE_URL",DATABASE_URL)
 
 
 
