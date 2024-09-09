@@ -98,20 +98,20 @@ DATABASES = {
 CONN_MAX_AGE = config("CONN_MAX_AGE", cast= str, default= 30)
 DATABASE_URL = config("DATABASE_URL", cast= str, default=None)
 
-if DATABASE_URL is not None:
+if DATABASE_URL:
     DATABASES = {
-  'default': {
-    'ENGINE': 'django.db.backends.postgresql',
-    'NAME': config('PGDATABASE'),
-    'USER': config('PGUSER'),
-    'PASSWORD': config('PGPASSWORD'),
-    'HOST': config('PGHOST'),
-    'PORT': config('PGPORT', 5432),
-    'OPTIONS': {
-      'sslmode': 'require',
-    },
-  }
-}
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': config('PGDATABASE'),
+            'USER': config('PGUSER'),
+            'PASSWORD': config('PGPASSWORD'),
+            'HOST': config('PGHOST'),
+            'PORT': config('PGPORT', 5432),
+            'OPTIONS': {
+                'sslmode': 'require',
+            },
+        }
+    }
 
 
 # if DATABASE_URL is not None:
