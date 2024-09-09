@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{% block head_title %} {% endblock head_title %}</title>
+        {% include 'base/css.html' %}
+        {% include 'base/meta.html' %}
+    </head>
+
+    <body>
+        {% include 'nav/navbar.html' %}
+        {% block content %}
+        replace me
+        {% endblock content %}
+        {% include 'base/js.html' %}
+    </body>
+</html>
