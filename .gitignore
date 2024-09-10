@@ -52,3 +52,6 @@ venv
 Thumbs.db
 *.bak
 *.tmp
+
+#Ignore vendor static files
+src\staticfiles\vendors
